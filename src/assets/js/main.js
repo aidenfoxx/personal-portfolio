@@ -413,3 +413,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	pageHelper.init();
 	backgroundHelper.init();
 });
+
+/**
+ * Public Symbols for Closure.
+ */
+window['gotoPage'] = pageHelper.gotoPage;
+window['gotoNextPost'] = pageHelper.gotoNextPost;
+window['gotoPrevPost'] = pageHelper.gotoPrevPost;
