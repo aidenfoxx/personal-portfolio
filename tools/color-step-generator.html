@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Color Step Generator</title>
+	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script>
+		$(function() {
+			var firstRun = true;
+			var lastStep = null;
+
+			$('#submit').on('click', function() {
+				var color1 = firstRun ? $('#color-1').val().replace('#', '') : lastStep;
+				var color2 = lastStep = $('#color-2').val().replace('#', '');
+				var steps = parseInt($('#steps').val()) - 1;
+
+				printColor(color1, color2, steps, firstRun);
+
+				firstRun = false;
+			});
+
+			$('#clear').on('click', function() {
+				$('#output').empty();
+
+				firstRun = true;
+			});
+
+			
+
+			printColor = function(color1, color2, steps, printFirst)
+			{
+				var color1RGB = hexToRGB(color1.replace('#', ''));
+				var color2RGB = hexToRGB(color2.replace('#', ''));
+
+				var rDif = color1RGB[0] - color2RGB[0];
+				var gDif = color1RGB[1] - color2RGB[1];
+				var bDif = color1RGB[2] - color2RGB[2];
+
+				if (printFirst)
+					$('#output').append('<div style="display: inline-block; height: 20px; width: 20px; background-color: #' + color1 + ';"></div>&nbsp;#' + color1 + '<br>');
+				else
+					steps += 1;
+
+				for (var i = 1; i <= steps; i++)
+				{
+					var percent = i / steps;
+
+					var newR = Math.round(color1RGB[0] - (rDif * percent));
+					var newG = Math.round(color1RGB[1] - (gDif * percent));
+					var newB = Math.round(color1RGB[2] - (bDif * percent));
+
+					var newHex = rgbToHex(newR, newG, newB);
+
+					$('#output').append('<div style="display: inline-block; height: 20px; width: 20px; background-color: ' + newHex + ';"></div>&nbsp;' + newHex + '<br>');
+				}
+			}
+
+			hexToRGB = function(hex) {
+				var r = parseInt(hex.substring(0, 2), 16);
+				var g = parseInt(hex.substring(2, 4), 16);
+				var b = parseInt(hex.substring(4, 6), 16);
+				return [r,g,b];
+			}
+
+			rgbToHex = function(r, g, b) {
+				return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+			}
+		});
+	</script>
+</head>
+<body>
+	<p>
+		<label>* First Color:</label><br />
+		<input id="color-1" type="text" value="#ffffff">
+	</p>
+	<p>
+		<label>* Color Step:</label><br />
+		<input id="color-2" type="text" value="#000000">
+	</p>
+	<p>
+		<label>Steps:</label><br />
+		<input id="steps" type="text" value="10"><br />
+	</p>
+	<p>
+		<input id="submit" type="submit" value="Add Color Step">
+		<input id="clear" type="submit" value="Clear">
+	</p>
+	<div id="output">
+		
+	</div>
+</body>
+</html>

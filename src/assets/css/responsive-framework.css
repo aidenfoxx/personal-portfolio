@@ -1,0 +1,116 @@
+/** 
+ * Micro Responsive Grid
+ * 
+ * @version    0.1
+ * @author     Aiden Foxx
+ * @license    MIT License 
+ * @copyright  2015 Aiden Foxx
+ * @link       http://github.com/aidenfoxx
+ * @twitter    @furiousfoxx
+ */ 
+
+/**
+ * Micro clearfix by Nicolas Gallagher
+ * (http://nicolasgallagher.com/)
+ */
+.row:before, .row:after { content: ''; display: table; }
+.row:after { clear: both; }
+
+.row > .columns  {
+	padding: 0 15px;
+    float: left;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    -moz-background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+
+.show-large { display: block; }
+.hide-large { display: none; }
+
+@media only screen and (max-width: 1279px) {
+	.show-medium { display: block; }
+	.hide-medium { display: none; }
+}
+
+@media only screen and (max-width: 767px) {
+	.show-small { display: block; }
+	.hide-small { display: none; }
+}
+
+@media only screen and (max-width: 767px) {
+	.row > .columns.medium-1,
+	.row > .columns.medium-2,
+	.row > .columns.medium-3,
+	.row > .columns.medium-4,
+	.row > .columns.medium-5,
+	.row > .columns.medium-6,
+	.row > .columns.medium-7,
+	.row > .columns.medium-8,
+	.row > .columns.medium-9,
+	.row > .columns.medium-10,
+	.row > .columns.medium-11,
+	.row > .columns.medium-12 { width: 100%; }
+}
+
+@media only screen and (max-width: 1279px) {
+	.row > .columns.large-1,
+	.row > .columns.large-2,
+	.row > .columns.large-3,
+	.row > .columns.large-4,
+	.row > .columns.large-5,
+	.row > .columns.large-6,
+	.row > .columns.large-7,
+	.row > .columns.large-8,
+	.row > .columns.large-9,
+	.row > .columns.large-10,
+	.row > .columns.large-11,
+	.row > .columns.large-12 { width: 100%; }
+}
+
+.row > .columns.small-1 { width: 8.33333333333%; }
+.row > .columns.small-2 { width: 16.6666666667%; }
+.row > .columns.small-3 { width: 25.0%; }
+.row > .columns.small-4 { width: 33.3333333333%; }
+.row > .columns.small-5 { width: 41.6666666667%; }
+.row > .columns.small-6 { width: 50.0%; }
+.row > .columns.small-7 { width: 58.3333333333%; }
+.row > .columns.small-8 { width: 66.6666666667%; }
+.row > .columns.small-9 { width: 75.0%; }
+.row > .columns.small-10 { width: 83.3333333333%; }
+.row > .columns.small-11 { width: 91.6666666667%; }
+.row > .columns.small-12 { width: 100%; }
+
+@media only screen and (min-width: 768px) {
+	.row > .columns.medium-1 { width: 8.33333333333%; }
+	.row > .columns.medium-2 { width: 16.6666666667%; }
+	.row > .columns.medium-3 { width: 25.0%; }
+	.row > .columns.medium-4 { width: 33.3333333333%; }
+	.row > .columns.medium-5 { width: 41.6666666667%; }
+	.row > .columns.medium-6 { width: 50.0%; }
+	.row > .columns.medium-7 { width: 58.3333333333%; }
+	.row > .columns.medium-8 { width: 66.6666666667%; }
+	.row > .columns.medium-9 { width: 75.0%; }
+	.row > .columns.medium-10 { width: 83.3333333333%; }
+	.row > .columns.medium-11 { width: 91.6666666667%; }
+	.row > .columns.medium-12 { width: 100%; }
+}
+
+@media only screen and (min-width: 1280px) {
+	.row > .columns.large-1 { width: 8.33333333333%; }
+	.row > .columns.large-2 { width: 16.6666666667%; }
+	.row > .columns.large-3 { width: 25.0%; }
+	.row > .columns.large-4 { width: 33.3333333333%; }
+	.row > .columns.large-5 { width: 41.6666666667%; }
+	.row > .columns.large-6 { width: 50.0%; }
+	.row > .columns.large-7 { width: 58.3333333333%; }
+	.row > .columns.large-8 { width: 66.6666666667%; }
+	.row > .columns.large-9 { width: 75.0%; }
+	.row > .columns.large-10 { width: 83.3333333333%; }
+	.row > .columns.large-11 { width: 91.6666666667%; }
+	.row > .columns.large-12 { width: 100%; }
+}
