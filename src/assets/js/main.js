@@ -273,28 +273,22 @@ var pageHelper = {
             document.addEventListener('mousedown', stopBounce);
         }
 
-        pageHelper.pageScroll.container.addEventListener('scroll', function() { pageHelper.scroll('pages'); });
-        pageHelper.pages[2].container.addEventListener('scroll', function() { pageHelper.scroll('work'); });
-        pageHelper.pages[3].container.addEventListener('scroll', function() { pageHelper.scroll('blog'); });
+        pageHelper.pageScroll.container.addEventListener('scroll', function() { pageHelper.scroll(); });
     },
 
-    scroll: function(id)
+    scroll: function()
     {
         clearTimeout(pageHelper.scrollTimeout);
         pageHelper.scrollTimeout = setTimeout(function() {
-            switch (id)
+            pageHelper.currentPage = pageHelper.pageScroll.calcNearestChild() + 1;
+            switch (pageHelper.currentPage)
             {
-              case 'pages':
-                pageHelper.currentPage = pageHelper.pageScroll.calcNearestChild() + 1;
-                break;
-              case 'work':
-                pageHelper.currentPost[2] = pageHelper.pages[2].calcNearestChild() + 1;
-                break;
-              case 'blog':
-                pageHelper.currentPost[3] = pageHelper.pages[3].calcNearestChild() + 1;
-                break;
+                case 2:
+                case 3:
+                    pageHelper.currentPost[pageHelper.currentPage - 1] = pageHelper.pages[pageHelper.currentPage - 1].calcNearestChild() + 1;
+                    break;
             }
-            pageHelper.setHash();
+            pageHelper.updateHash();
         }, 500);
     },
 
@@ -344,15 +338,17 @@ var pageHelper = {
     {
         var nearestChild = pageHelper.pages[pageHelper.currentPage - 1].calcNearestChild();
         pageHelper.gotoPage(pageHelper.currentPage, nearestChild + 2, speed);
+        pageHelper.pageScroll.container.dispatchEvent(new Event('scroll'));
     },
 
     gotoPrevPost: function(speed)
     {
         var nearestChild = pageHelper.pages[pageHelper.currentPage - 1].calcNearestChild();
         pageHelper.gotoPage(pageHelper.currentPage, nearestChild, speed);
+        pageHelper.pageScroll.container.dispatchEvent(new Event('scroll'));
     },
 
-    setHash: function(hash)
+    updateHash: function()
     {
         window.location.hash = '!/page/' + pageHelper.currentPage;
 
