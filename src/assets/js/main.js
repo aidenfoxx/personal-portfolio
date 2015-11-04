@@ -274,6 +274,8 @@ var pageHelper = {
         }
 
         pageHelper.pageScroll.container.addEventListener('scroll', function() { pageHelper.scroll(); });
+        pageHelper.pages[2].container.addEventListener('scroll', function() { pageHelper.pageScroll.container.dispatchEvent(new Event('scroll')); });
+        pageHelper.pages[3].container.addEventListener('scroll', function() { pageHelper.pageScroll.container.dispatchEvent(new Event('scroll')); });
     },
 
     scroll: function()
@@ -338,14 +340,12 @@ var pageHelper = {
     {
         var nearestChild = pageHelper.pages[pageHelper.currentPage - 1].calcNearestChild();
         pageHelper.gotoPage(pageHelper.currentPage, nearestChild + 2, speed);
-        pageHelper.pageScroll.container.dispatchEvent(new Event('scroll'));
     },
 
     gotoPrevPost: function(speed)
     {
         var nearestChild = pageHelper.pages[pageHelper.currentPage - 1].calcNearestChild();
         pageHelper.gotoPage(pageHelper.currentPage, nearestChild, speed);
-        pageHelper.pageScroll.container.dispatchEvent(new Event('scroll'));
     },
 
     updateHash: function()
