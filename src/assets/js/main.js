@@ -251,6 +251,11 @@ var pageHelper = {
         pageHelper.pages[3] = new AltScroll(document.getElementById('blog'));
         pageHelper.pages[4] = new AltScroll(document.getElementById('contact'));
 
+        pageHelper.bindEvents();
+    },
+
+    bindEvents: function()
+    {
         if (window.location.hash || mobileHelper.isMobile || mobileHelper.isTablet)
         {
             document.getElementById('overflow-container').className += ' stop-bounce load';

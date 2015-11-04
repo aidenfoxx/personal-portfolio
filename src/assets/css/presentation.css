@@ -38,7 +38,7 @@ a {
 	-webkit-transition: color 200ms;
 	transition: color 200ms;
 }
-img { display: block; margin: 0; max-width: 100%; height: auto; }
+img { display: block; margin: 0; max-width: 100%; height: auto; width: 100%; }
 p { line-height: 1.4em; }
 
 ol { padding-left: 22px; }
@@ -119,7 +119,7 @@ ul li:before { content: '\02022'; margin-right: 10px; }
 /* # Navigation
 ================================================== */
 #show-menu { position: absolute; left: 20px; top: 20px; z-index: 99; background-color: #ffffff; text-align: center; }
-#show-menu img { margin: 12px 10px; }
+#show-menu img { margin: 12px 10px; width: 19px; height: 14px; }
 #menu {
 	position: absolute;
 	left: 10px;
@@ -331,6 +331,7 @@ a.a2a_sss:hover { border-left-color: #ffffff !important; }
 /* # Responsive
 ================================================== */
 @media only screen and (max-width: 1279px) {
+	#home .quote .hide { display: none; }
 	#page-container .vertical-content .post .content { padding: 30px 15px; }
 	#work .padding { padding: 0; }
 }
