@@ -330,7 +330,7 @@ a.a2a_sss:hover { border-left-color: #ffffff !important; }
 
 /* # Responsive
 ================================================== */
-@media only screen and (max-width: 1279px) {
+@media only screen and (max-width: 1199px) {
 	#home .quote .hide { display: none; }
 	#page-container .vertical-content .post .content { padding: 30px 15px; }
 	#work .padding { padding: 0; }

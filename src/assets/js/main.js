@@ -273,9 +273,12 @@ var pageHelper = {
             document.addEventListener('mousedown', stopBounce);
         }
 
+        var scrollEvent = document.createEvent('Event');
+        scrollEvent.initEvent('scroll', true, true);
+
         pageHelper.pageScroll.container.addEventListener('scroll', function() { pageHelper.scroll(); });
-        pageHelper.pages[2].container.addEventListener('scroll', function() { pageHelper.pageScroll.container.dispatchEvent(new Event('scroll')); });
-        pageHelper.pages[3].container.addEventListener('scroll', function() { pageHelper.pageScroll.container.dispatchEvent(new Event('scroll')); });
+        pageHelper.pages[2].container.addEventListener('scroll', function() { pageHelper.pageScroll.container.dispatchEvent(scrollEvent); });
+        pageHelper.pages[3].container.addEventListener('scroll', function() { pageHelper.pageScroll.container.dispatchEvent(scrollEvent); });
     },
 
     scroll: function()
@@ -385,7 +388,11 @@ var menuHelper = {
                 var menuButton = document.getElementById('show-menu');
 
                 if (target.id !== 'show-menu' && target.id !== 'menu' && !menuHelper.childOf('show-menu', target) && !menuHelper.childOf('menu', target))
-                    menuButton.dispatchEvent(new Event('click'));
+                {
+                    var clickEvent = document.createEvent('Event');
+                    clickEvent.initEvent('click', true, true);
+                    menuButton.dispatchEvent(clickEvent);
+                }
             }
         });
     },
