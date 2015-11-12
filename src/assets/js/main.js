@@ -114,6 +114,7 @@ var backgroundHelper = {
     background: null,
     backgroundOverlay: null,
     gaussianBackground: null,
+    staticColorIndex: null,
 
     resizeTimeout: null,
 
@@ -155,7 +156,9 @@ var backgroundHelper = {
     setParameters: function()
     {
         var aspectRatio = window.innerWidth / window.innerHeight;
-        var randomIndex = Math.floor(Math.random() * 5) * 10;
+        
+        if (!backgroundHelper.staticColorIndex)
+            backgroundHelper.staticColorIndex = Math.floor(Math.random() * 5) * 10;
 
         if (aspectRatio > 1)
         {
@@ -171,10 +174,10 @@ var backgroundHelper = {
             else
             {
                 backgroundHelper.layers = [
-                    { orbs: 2, radius: 10, maxVelocity: .15, color: backgroundHelper.colorPallete[randomIndex][0], columns: 2 },
-                    { orbs: 3, radius: 8, maxVelocity: .15, color: backgroundHelper.colorPallete[randomIndex][1], columns: 2 },
-                    { orbs: 5, radius: 5, maxVelocity: .15, color: backgroundHelper.colorPallete[randomIndex][2] },
-                    { color: backgroundHelper.colorPallete[randomIndex][3] }
+                    { orbs: 2, radius: 10, maxVelocity: .15, color: backgroundHelper.colorPallete[backgroundHelper.staticColorIndex][0], columns: 2 },
+                    { orbs: 3, radius: 8, maxVelocity: .15, color: backgroundHelper.colorPallete[backgroundHelper.staticColorIndex][1], columns: 2 },
+                    { orbs: 5, radius: 5, maxVelocity: .15, color: backgroundHelper.colorPallete[backgroundHelper.staticColorIndex][2] },
+                    { color: backgroundHelper.colorPallete[backgroundHelper.staticColorIndex][3] }
                 ];
             }
         }
@@ -192,10 +195,10 @@ var backgroundHelper = {
             else
             {
                 backgroundHelper.layers = [
-                    { orbs: 2, radius: 10, maxVelocity: .15, color: backgroundHelper.colorPallete[randomIndex][0], rows: 2 },
-                    { orbs: 3, radius: 8, maxVelocity: .15, color: backgroundHelper.colorPallete[randomIndex][1], rows: 2 },
-                    { orbs: 5, radius: 5, maxVelocity: .15, color: backgroundHelper.colorPallete[randomIndex][2] },
-                    { color: backgroundHelper.colorPallete[randomIndex][3] }
+                    { orbs: 2, radius: 10, maxVelocity: .15, color: backgroundHelper.colorPallete[backgroundHelper.staticColorIndex][0], rows: 2 },
+                    { orbs: 3, radius: 8, maxVelocity: .15, color: backgroundHelper.colorPallete[backgroundHelper.staticColorIndex][1], rows: 2 },
+                    { orbs: 5, radius: 5, maxVelocity: .15, color: backgroundHelper.colorPallete[backgroundHelper.staticColorIndex][2] },
+                    { color: backgroundHelper.colorPallete[backgroundHelper.staticColorIndex][3] }
                 ];
             }
         }
@@ -233,14 +236,13 @@ var pageHelper = {
 
     currentPage: 1,
     currentPost: [1,1,1,1,1],
-
+  
     pageScroll: null,
     pages: [],
 
+    scrollTimeout: null,
     pageScrollTimeout: null,
     postScrollTimeout: null,
-
-    scrollTimeout: null,
 
     init: function()
     {
@@ -410,11 +412,18 @@ var menuHelper = {
 /**
  * Site init.
  */
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener('DOMContentLoaded', function() {
     mobileHelper.init();
     menuHelper.init();
     pageHelper.init();
     backgroundHelper.init();
+    document.getElementById('loader').className = 'loaded';
+});
+
+window.addEventListener('load', function() {
+    var resizeEvent = document.createEvent('Event');
+    resizeEvent.initEvent('resize', true, true);
+    window.dispatchEvent(resizeEvent);
 });
 
 /**
