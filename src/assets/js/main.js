@@ -37,7 +37,7 @@ var mobileHelper = {
 
     setDevice: function()
     {
-        if (window.innerWidth < 1279 && window.innerWidth > 767)
+        if (window.innerWidth < 1199 && window.innerWidth > 767)
         {
             mobileHelper.isMobile = false;
             mobileHelper.isTablet = true;
@@ -267,12 +267,21 @@ var pageHelper = {
         {
             var stopBounce = function() {
                 document.getElementById('overflow-container').className += ' stop-bounce';
+
+                document.removeEventListener('pointerdown', stopBounce);
+                document.removeEventListener('MSPointerDown', stopBounce);
                 document.removeEventListener('touchstart', stopBounce);
                 document.removeEventListener('mousedown', stopBounce);
+                document.removeEventListener('mousewheel', stopBounce);
+                document.removeEventListener('DOMMouseScroll', stopBounce);
             };
 
+            document.addEventListener('pointerdown', stopBounce);
+            document.addEventListener('MSPointerDown', stopBounce);
             document.addEventListener('touchstart', stopBounce);
             document.addEventListener('mousedown', stopBounce);
+            document.addEventListener('mousewheel', stopBounce);
+            document.addEventListener('DOMMouseScroll', stopBounce);
         }
 
         var scrollEvent = document.createEvent('Event');
@@ -383,20 +392,36 @@ var menuHelper = {
             menuHelper.menu.className = menuHelper.menu.className !== 'active' ? 'active' : 'inactive';
         });
 
-        document.addEventListener('click', function(e) {
-            if (menuHelper.menu.className === 'active')
-            {
-                var target = e.target;
-                var menuButton = document.getElementById('show-menu');
+        if (!('ontouchstart' in window))
+        {
+            if (navigator.maxTouchPoints > 0)
+                document.addEventListener('pointerdown', function(e) { menuHelper.clickAnywhere(e); });
+            else if (navigator.msMaxTouchPoints > 0)
+                document.addEventListener('MSPointerDown', function(e) { menuHelper.clickAnywhere(e); });
+        }
+        else
+        {
+            document.addEventListener('touchstart', function(e) { menuHelper.clickAnywhere(e); });
+        }
 
-                if (target.id !== 'show-menu' && target.id !== 'menu' && !menuHelper.childOf('show-menu', target) && !menuHelper.childOf('menu', target))
-                {
-                    var clickEvent = document.createEvent('Event');
-                    clickEvent.initEvent('click', true, true);
-                    menuButton.dispatchEvent(clickEvent);
-                }
+        document.addEventListener('mousedown', function(e) { menuHelper.clickAnywhere(e); });
+        
+    },
+
+    clickAnywhere: function(e)
+    {
+        if (menuHelper.menu.className === 'active')
+        {
+            var target = e.target;
+            var menuButton = document.getElementById('show-menu');
+
+            if (target.id !== 'show-menu' && target.id !== 'menu' && !menuHelper.childOf('show-menu', target) && !menuHelper.childOf('menu', target))
+            {
+                var clickEvent = document.createEvent('Event');
+                clickEvent.initEvent('click', true, true);
+                menuButton.dispatchEvent(clickEvent);
             }
-        });
+        }
     },
 
     childOf: function(id, element)
@@ -417,13 +442,14 @@ document.addEventListener('DOMContentLoaded', function() {
     menuHelper.init();
     pageHelper.init();
     backgroundHelper.init();
+    // Hide loader page (disabled)
     document.getElementById('loader').className = 'loaded';
 });
 
 window.addEventListener('load', function() {
-    var resizeEvent = document.createEvent('Event');
-    resizeEvent.initEvent('resize', true, true);
-    window.dispatchEvent(resizeEvent);
+    // Ensures content is correct size after completely loaded
+    pageHelper.pages[2].resizeCallback();
+    pageHelper.pages[3].resizeCallback();
 });
 
 /**

@@ -244,10 +244,10 @@ ul li:before { content: '\02022'; margin-right: 10px; }
 /* # Page Layout
 ================================================== */
 #overflow-container { position: relative; width: 100%; height: 100%; overflow: hidden; z-index: 10; color: #ffffff; }
-#page-container { overflow: scroll; }
+#page-container { overflow: scroll; -webkit-overflow-scrolling: touch; }
 #page-container .horizontal-content { width: 500%; height: 100%; }
 #page-container .horizontal-content .hide-scroll { width: 20%; height: 100%; float: left; overflow: hidden; }
-#page-container .horizontal-content .hide-scroll .page { overflow: scroll; }
+#page-container .horizontal-content .hide-scroll .page { overflow: scroll; -webkit-overflow-scrolling: touch; }
 #page-container .vertical-content {
 	display: table;
 	width: 100%;
@@ -412,6 +412,8 @@ a.a2a_sss:hover { border-left-color: #ffffff !important; }
 /* # Responsive
 ================================================== */
 @media only screen and (max-width: 1199px) {
+	#overflow-container:before { display: none; }
+	#overflow-container { -webkit-animation: none; animation: none; }
 	#home .quote .hide { display: none; }
 	#page-container .vertical-content .post .content { padding: 30px 15px; }
 	#work .padding { padding: 0; }
