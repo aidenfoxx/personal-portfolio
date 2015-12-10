@@ -1,3 +1,4 @@
+window.alert=function(){};
 var r;(function(){var a=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame,b=window.cancelAnimationFrame||window.webkitCancelAnimationFrame||window.webkitCancelRequestAnimationFrame||window.mozCancelAnimationFrame;a&&b||(a=function(a){return window.setTimeout(function(){a()},1)},b=function(a){window.clearTimeout(a)});window.requestAnimationFrame=a;window.cancelAnimationFrame=b})();
 EasingFunctions={Fa:function(a){return a},ya:function(a){return a*a},Ba:function(a){return a*(2-a)},va:function(a){return.5>a?2*a*a:-1+(4-2*a)*a},ta:function(a){return a*a*a},aa:function(a){return--a*a*a+1},ua:function(a){return.5>a?4*a*a*a:(a-1)*(2*a-2)*(2*a-2)+1},za:function(a){return a*a*a*a},Ca:function(a){return 1- --a*a*a*a},wa:function(a){return.5>a?8*a*a*a*a:1-8*--a*a*a*a},Aa:function(a){return a*a*a*a*a},Da:function(a){return 1+--a*a*a*a*a},xa:function(a){return.5>a?16*a*a*a*a*a:1+16*--a*
 a*a*a*a}};
