@@ -29,7 +29,13 @@
     background-clip: padding-box;
 }
 
-.show-large { display: block; }
+/**
+ * Visibility works on level-and-lower basis e.g. 
+ * show-medium will be visible on medium and lower 
+ * and hide-medium will be hidden on medium and lower.
+ */
+.show-medium,
+.show-small,
 .hide-large { display: none; }
 
 @media only screen and (max-width: 1199px) {
@@ -40,9 +46,7 @@
 @media only screen and (max-width: 767px) {
 	.show-small { display: block; }
 	.hide-small { display: none; }
-}
 
-@media only screen and (max-width: 767px) {
 	.row > .columns.medium-1,
 	.row > .columns.medium-2,
 	.row > .columns.medium-3,
