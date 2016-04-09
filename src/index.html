@@ -29,11 +29,11 @@
 	<a id="show-menu"><img src="./assets/img/menu.png" alt="menu-icon"></a>
 	<nav id="menu" class="inactive">
 		<ul class="links">
-			<li><a onclick="setTimeout('gotoPage(1, null, 500)', 10)">Home</a></li>
-			<li><a onclick="setTimeout('gotoPage(2, null, 500)', 10)">About</a></li>
-			<li><a onclick="setTimeout('gotoPage(3, null, 500)', 10)">Work</a></li>
-			<li><a onclick="setTimeout('gotoPage(4, null, 500)', 10)">News</a></li>
-			<li><a onclick="setTimeout('gotoPage(5, null, 500)', 10)">Contact</a></li>
+			<li><a onmouseup="gotoPage(1, null, 500);">Home</a></li>
+			<li><a onmouseup="gotoPage(2, null, 500);">About</a></li>
+			<li><a onmouseup="gotoPage(3, null, 500);">Work</a></li>
+			<li><a onmouseup="gotoPage(4, null, 500);">News</a></li>
+			<li><a onmouseup="gotoPage(5, null, 500);">Contact</a></li>
 		</ul>
 		<ul class="social">
 			<li><a href="http://twitter.com/FuriousFoxx" target="_blank"><i class="fi-social-twitter"></i></a></li><!--
@@ -787,8 +787,8 @@
 						</div>
 						<div class="post-navigation hide-small">
 							<div class="button-group">
-								<a class="button secondary" onclick="setTimeout('gotoPrevPost()', 10)"><i class="fi-arrow-up"></i></a><!--
-								--><a class="button secondary" onclick="setTimeout('gotoNextPost()', 10)"><i class="fi-arrow-down"></i></a>
+								<a class="button secondary" onmouseup="gotoPrevPost();"><i class="fi-arrow-up"></i></a><!--
+								--><a class="button secondary" onmouseup="gotoNextPost();"><i class="fi-arrow-down"></i></a>
 							</div>
 						</div>
 					</div>
@@ -806,7 +806,7 @@
 												<div class="splitter"></div>
 												<p>After many months and a few design changes along the way I have finally released my portfolio website. This has been a long time coming! I started work on my <a href="./oldportfolio/" target="_blank">first portfolio</a> website back in 2012, which this website draws inspiration from as well as multi-axis navigation systems such as <a href="http://manuals.playstation.net/document/en/ps3/current/basicoperations/xmb.html" target="_blank">Sony's XMB navigation</a>.</p>
 												<p>My previous website never really got off the ground due to recieving a job during it's development, but as I am back on the freelance bandwaggon and looking for potential clients, I needed somewhere to house my recent work in a way which really shows off my prowess as a developer.</p>
-												<p>I would love to hear you think about the site, and all feedback is welcomed. You can contact me either via <a onclick="setTimeout('gotoPage(2)', 10)">Social Networks</a> or the <a onclick="setTimeout('gotoPage(5)', 10)">Contact Page</a>.</p>
+												<p>I would love to hear you think about the site, and all feedback is welcomed. You can contact me either via <a onmouseup="gotoPage(2);">Social Networks</a> or the <a onmouseup="gotoPage(5);">Contact Page</a>.</p>
 											</div>
 										</div>
 									</div>
@@ -815,8 +815,8 @@
 						</div>
 						<div class="post-navigation hide-small">
 							<div class="button-group">
-								<a class="button secondary inactive" onclick="setTimeout('gotoPrevPost()', 10)"><i class="fi-arrow-up"></i></a><!--
-								--><a class="button secondary inactive" onclick="setTimeout('gotoNextPost()', 10)"><i class="fi-arrow-down"></i></a>
+								<a class="button secondary inactive" onmouseup="gotoPrevPost();"><i class="fi-arrow-up"></i></a><!--
+								--><a class="button secondary inactive" onmouseup="gotoNextPost();"><i class="fi-arrow-down"></i></a>
 							</div>
 						</div>
 					</div>

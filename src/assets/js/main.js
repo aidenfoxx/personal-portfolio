@@ -1,3 +1,5 @@
+window.alert = function() {};
+
 /**
  * Function overrides.
  */

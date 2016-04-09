@@ -256,6 +256,8 @@ AltScroll.prototype.scrollToFrame = function(startTime, fromX, toX, fromY, toY, 
 
 AltScroll.prototype.scrollStop = function()
 {
+    if (this.options.snap && this.snapTimeout)
+        clearTimeout(this.snapTimeout);
     window.cancelAnimationFrame(this.scrollFrame);
 }
 
@@ -276,18 +278,10 @@ AltScroll.prototype.snapDelay = function()
 {
     this.scrollStop();
 
-    clearTimeout(this.snapTimeout);
     this.snapTimeout = setTimeout(function() { 
         this.container.removeEventListener('scroll', this.scrollEvent); 
-        this.scrollEvent = null; 
         this.snapToNearest();
     }.bind(this), 500);
-    
-    if (!this.scrollEvent)
-    {
-        this.scrollEvent = function() { this.snapDelay(); }.bind(this);
-        this.container.addEventListener('scroll', this.scrollEvent)
-    }
 }
 
 AltScroll.prototype.touchStart = function()
