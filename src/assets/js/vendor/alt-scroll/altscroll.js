@@ -111,7 +111,7 @@ AltScroll.prototype.calcScrollbarSize = function()
 
     outer.parentNode.removeChild(outer);
 
-    return scrollbarSize;
+    return Math.ceil(scrollbarSize);
 }
 
 AltScroll.prototype.getChildRect = function()
@@ -205,8 +205,8 @@ AltScroll.prototype.resizeCallback = function()
 
 AltScroll.prototype.scrollTo = function(x, y, speed, easing, callback)
 {
-    var contentWidth = this.contentRect.width - this.containerRect.width + this.scrollbarSize;
-    var contentHeight = this.contentRect.height - this.containerRect.height + this.scrollbarSize;
+    var contentWidth = Math.round(this.contentRect.width) - Math.round(this.containerRect.width) + this.scrollbarSize;
+    var contentHeight = Math.round(this.contentRect.height) - Math.round(this.containerRect.height) + this.scrollbarSize;
 
     // Collision detection
     if (x < 0 || x > contentWidth)
@@ -240,6 +240,7 @@ AltScroll.prototype.scrollToFrame = function(startTime, fromX, toX, fromY, toY, 
     {
         var delta = Date.now() - startTime;
         var animPercent = delta / speed;
+        // console.log(speed+' '+delta);
 
         if (animPercent < 1)
         {

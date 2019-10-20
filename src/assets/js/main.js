@@ -230,7 +230,7 @@ var backgroundHelper = {
             backgroundHelper.setParameters();
             backgroundHelper.gaussianBackground.updateLayers(backgroundHelper.layers);
             backgroundHelper.gaussianBackground.updateOptions({ renderWidth: backgroundHelper.renderWidth, renderHeight: backgroundHelper.renderHeight, animation: mobileHelper.isMobile ? false : true });
-        }, 500);
+        }, 300);
     }
 };
 
@@ -289,7 +289,7 @@ var pageHelper = {
         var scrollEvent = document.createEvent('Event');
         scrollEvent.initEvent('scroll', true, true);
 
-        pageHelper.pageScroll.container.addEventListener('scroll', function() { pageHelper.scroll(); });
+        pageHelper.pageScroll.container.addEventListener('scroll', pageHelper.scroll);
         pageHelper.pages[2].container.addEventListener('scroll', function() { pageHelper.pageScroll.container.dispatchEvent(scrollEvent); });
         pageHelper.pages[3].container.addEventListener('scroll', function() { pageHelper.pageScroll.container.dispatchEvent(scrollEvent); });
     },
@@ -307,7 +307,7 @@ var pageHelper = {
                     break;
             }
             pageHelper.updateHash();
-        }, 500);
+        }, 300);
     },
 
     gotoHash: function(hash, speed)
