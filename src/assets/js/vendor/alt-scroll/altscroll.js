@@ -240,7 +240,6 @@ AltScroll.prototype.scrollToFrame = function(startTime, fromX, toX, fromY, toY, 
     {
         var delta = Date.now() - startTime;
         var animPercent = delta / speed;
-        // console.log(speed+' '+delta);
 
         if (animPercent < 1)
         {
